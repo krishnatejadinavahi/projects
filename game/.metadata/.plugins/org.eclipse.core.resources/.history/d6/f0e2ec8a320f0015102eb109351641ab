@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div id="background">
+    <img src="http://media.giphy.com/media/TZf4ZyXb0lXXi/giphy.gif" class="stretch" alt="" />
+</div>
+
+
+
+<div id="nextim">
+    
+    <img src="scripts/hhh.png" width="80" height="80" />
+</div>
+
+<div id="weapon">
+    <img src="scripts/hhh1.png" width="80" height="80" />
+</div>
+
+<div id="enem">
+    
+    <img src="scripts/enemy.png" width="80" height="80" />
+</div>
+
+<div id="youlost">
+
+<img src="scripts/youlost.png" />
+
+</div>
+
+<img src="scripts/spaaa.png" id="im1" height="100" width="100" />
+<link href="dk.css" rel="stylesheet" ></link>
+<script type="text/javascript" src="scripts/yani.js"></script>
+
+<!--  <button id="bbb1" onClick="countdec()">decelerate</button> -->
+</body>
+</html>

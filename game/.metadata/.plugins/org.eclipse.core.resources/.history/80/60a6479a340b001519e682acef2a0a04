@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="scripts/main.js"></script>
+</head>
+<body onload="hey()">
+<img src="https://scontent-atl1-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10425100_869744339757063_6076344246200997370_n.jpg?oh=a6e5563f76a013339fec38ce7bbd9cba&oe=560A3A6C" />
+<button onclick="helloWorld()">hello world</button>
+</body>
+</html>

@@ -1,0 +1,18 @@
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=new Image();
+img.onLoad=function()
+{
+	img.status=false;
+}
+img.src = "ee.jpg";
+var heya=function(){
+	img.status=true;
+	alert(img.status);
+	if(img.status==true)
+	{
+	ctx.drawImage(img,0,0);
+	}
+}
+
+

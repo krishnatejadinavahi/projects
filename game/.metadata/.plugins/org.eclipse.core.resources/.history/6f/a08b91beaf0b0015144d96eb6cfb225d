@@ -1,0 +1,11 @@
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+var hello=function(){
+	alert("hello");
+}
+
+var drag=function(ev)
+{
+	
+	}
