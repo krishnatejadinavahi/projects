@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+<img id="mypic" src="C:\Users\user1\Pictures\Capture.png" />
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;"> </canvas>
+<script src="scripts/main.js"></script>
+</body>
+</html>

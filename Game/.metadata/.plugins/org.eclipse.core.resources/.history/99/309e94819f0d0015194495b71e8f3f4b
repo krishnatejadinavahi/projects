@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+<div id="background">
+    <img src="http://iv1.lisimg.com/image/4780763/600full-my-profile.jpg" class="stretch" alt="" />
+</div>
+<div id="butt">
+    
+    <button id="bbb" onClick="count()">accelerate</button>
+</div>
+
+
+
+<div id="nextim">
+    
+    <img src="scripts/bomb.png" width="80" height="80" />
+</div>
+
+<div id="weapon">
+    <img src="scripts/bomb.png" width="80" height="80" />
+</div>
+
+<div id="enem">
+    
+    <img src="scripts/enemy.png" width="80" height="80" />
+</div>
+
+<div id="youlost">
+
+<img src="scripts/youlost.jpg" width="500" height="500" />YOULOST
+
+</div>
+
+<img src="scripts/spaaa.png" id="im1" height="100" width="100" />
+<link href="dk.css" rel="stylesheet" ></link>
+<script type="text/javascript" src="scripts/yani.js"></script>
+
+<!--  <button id="bbb1" onClick="countdec()">decelerate</button> -->
+</body>
+</html>

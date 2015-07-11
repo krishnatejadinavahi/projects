@@ -1,0 +1,8 @@
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+var c1=document.getElementById("b1");
+if(b1.status==true)
+	alert("hello");
+else
+	alert("noooo");

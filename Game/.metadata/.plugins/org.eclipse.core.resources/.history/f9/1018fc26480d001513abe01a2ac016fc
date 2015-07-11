@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+<div id="background">
+    <img src="scripts/bk.jpg" class="stretch" alt="" />
+</div>
+<div id="butt">
+    
+    <button id="bbb" onClick="count()">accelerate</button>
+</div>
+
+<div id="nextim">
+    
+    <img src="scripts/bomb.png" width="80" height="80" />
+</div>
+
+<img src="scripts/spaaa.png" id="im1" height="100" width="100" />
+<link href="dk.css" rel="stylesheet" ></link>
+<script type="text/javascript" src="scripts/yani.js"></script>
+
+<!--  <button id="bbb1" onClick="countdec()">decelerate</button> -->
+</body>
+</html>
