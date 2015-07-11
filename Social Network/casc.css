@@ -1,0 +1,56 @@
+@CHARSET "ISO-8859-1";
+
+
+#pwd{
+position:fixed;
+
+left:40%;
+top:50%;
+}
+
+#uid{
+position:fixed;
+
+left:40%;
+bottom:50%;
+}
+
+#sub{
+	position:fixed;
+
+left:50%;
+bottom:40%;
+}
+
+#sub1{
+	position:fixed;
+
+left:45%;
+bottom:40%;
+}
+
+#bac{
+	width:100%;
+	height:100%;
+	 position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+#bac1{
+	width:40%;
+	height:40%;
+	 position: fixed; 
+    left: 700px; 
+    top: 400px; 
+    /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.ui-widget-header
+{
+	background-color: GhostWhite;
+	color:black;
+    background-image: none;
+    
+   
+}
