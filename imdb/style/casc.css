@@ -1,0 +1,184 @@
+@CHARSET "ISO-8859-1";
+
+#images
+{
+	position:fixed;
+	width:100%;
+	height:100%;
+	
+}
+
+#images 
+{
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0%;
+	left:0%;
+	z-index:-1;
+
+}
+
+#images #back1,#back2,#back3,#back4
+{
+	position:fixed;
+	width:100%;
+	height:100%;
+}
+
+
+#loginform
+{
+	position:fixed;
+	left:54%;
+	top:0%;
+}
+
+#admindiv
+{
+	position:fixed;
+	left:54%;
+	top:13%;
+}
+
+
+.ui-widget
+{
+	 background:#F5F5F5; 
+	 color:#000000;
+	border-color: #000000;
+}
+
+.ui-widget-content{
+	 
+background:#F5F5F5; 
+ color:#000000;
+border-color: #000000;
+} 
+
+
+.ui-widget-header
+{
+	background: #F5F5F5; 	
+	 color:#000000;
+	border-color: #000000;
+
+}
+
+#admindiv p,#loginform p
+{
+
+	color:#000000;
+ background-color: #F5F5DC;
+}
+#search
+{
+	position:fixed;
+	left:40%;
+	top:50%;
+	
+}
+
+#add
+{
+	position:fixed;
+	left:30%;
+	top:10%;
+}
+
+textarea 
+{
+    overflow-y: scroll;
+}
+
+#approve
+{
+	position:fixed;
+	width:100%;
+	height:25%;
+	left:0%;
+	top:-80px;
+
+}
+
+#approve h1
+{
+	position:relative;
+	left:45%;
+	top:10px;
+	color:#FFD700;
+}
+
+#sellist
+{
+	position:fixed;
+	left:40%;
+	top:50%;
+}
+
+#adata
+{
+	position:fixed;
+	left:0%;
+	top:0%;
+	width:100%;
+	height:100%;
+	overflow-x:scroll;
+}
+#ff
+{
+	position:relative;
+	width:20%;
+	height:20%;
+}
+
+#ud
+{
+	position:fixed;
+	left:0%;
+	top:0%;
+	width:100%;
+	height:100%;
+	overflow-x:scroll;
+	overflow-y:scroll;
+	
+}
+
+#uda
+{
+	position:fixed;
+	top:90%;
+	left:90%;
+	color:#000000;
+}
+#uda1
+{
+	position:fixed;
+	top:90%;
+	left:80%;
+	color:#000000;
+}
+#slider
+{
+	position:fixed;
+	width:30%;
+	left:67%;
+}
+
+#editing
+{
+	position:fixed;
+	left:0%;
+	top:0%;
+	width:100%;
+	height:100%;
+	overflow-x:scroll;
+	overflow-y:scroll;	
+}
+
+#logout
+{
+	position:fixed;
+	left:90%;
+	top:90%;
+}
