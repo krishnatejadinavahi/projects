@@ -1,0 +1,243 @@
+
+
+body {
+	
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+ 
+  
+}
+
+#back1
+{
+	position:fixed;
+	width:30%;
+	height:100%;
+	left:0%;
+	top:0%;
+	background-color: #E6E6FA;
+
+}
+
+#back2
+{
+	position:fixed;
+	width:70%;
+	height:100%;
+	left:30%;
+	top:0%;
+	background-color: #F5F5F5;
+	border-left: 3px groove black;
+	overflow:hidden;
+	overflow-y:scroll;
+	
+
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+.form-horizontal
+{
+	
+	position:fixed;
+	left:80%;
+	top:0%;
+	width::30%;
+	height:30%;
+	
+}
+#sub
+{
+	position:relative;
+	left:30%;
+}
+
+#divalert
+{
+	
+	postion:fixed;
+	
+	width:30%;
+	height:20%;
+	visibility:hidden;
+	z-index:1;
+	
+}
+#divalert button
+{
+	position:relative;
+	left:78%;
+	z-index:1;
+}
+
+#dd
+{
+	position:fixed;
+	width:60%;
+	left:5%;
+	top:40%;
+		z-index:1;
+}
+
+#tb
+{
+	position:fixed;
+	left:30%;
+	top:0%;
+	width:70%;
+	height:100%;
+	
+}
+#menu
+{
+	position:fixed;
+	left:2%;
+	top:5%;
+
+
+}
+
+#tb textarea
+{
+	position:relative;
+	width:95%;
+	height:100%;
+	overflow-y:scroll;
+}
+
+#pj
+{
+	position:fixed;
+	left:30%;
+	top:0%;
+	width:70%;
+	height:100%;
+	background-color: #F5F5F5;
+	
+}
+
+#pj textarea
+{
+	position:relative;
+	width:95%;
+	height:70%;
+	overflow-y:scroll;
+}
+
+#pj input
+{
+	position:relative;
+	width:65%;
+	height:5%;
+
+}
+
+ul
+{
+	height: 12em;
+	overflow-y:auto;
+	
+	list-style-position: inside;
+}
+
+li
+{
+	display:block;
+}
+
+#showjob
+{
+	position:fixed;
+	left:30%;
+	top:0%;
+	height:100%;
+	width:70%;
+	background-color: #F5F5F5;
+}
+
+#showjob input
+{
+	position:relative;
+	left:3%;
+}
+
+#tabl
+{
+	position:fixed;
+	left:30%;
+	top:0%;
+	height:100%;
+	width:70%;
+	background-color: #F5F5F5;
+	overflow:hidden;
+	overflow-y:scroll;
+	
+}
+
+#vp
+{
+	position:fixed;
+	left:30%;
+	top:0%;
+	height:85%;
+	width:70%;
+	background-color: #F5F5F5;
+	overflow:hidden;
+	overflow-y:scroll;
+/*	    border-style: solid;
+    border-width: medium;*/
+	
+}
+
+#msg
+{
+	position:fixed;
+	top:87%;
+	width:66%;
+	left:32%;
+	background-color: #F5F5F5;
+}
+
+#sms
+{
+	position:fixed;
+	top:93%;
+	left:32%;
+	background-color: #F5F5F5;
+	
+}
+
+#sed
+{
+	position:fixed;
+	width:70%;
+	height:15%;
+	top:85%;
+	left:30%;
+	background-color: #F5F5F5;
+	z-index:-1;
+}
+
+
+#tabl2
+{
+	position:fixed;
+	left:30%;
+	top:0%;
+	height:100%;
+	width:70%;
+	background-color: #F5F5F5;
+	overflow:hidden;
+	overflow-y:scroll;
+	
+}
+
+#lou
+{
+	position:fixed;
+	left:2%;
+	top:93%;
+}

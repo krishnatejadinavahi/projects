@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head><title>JOBS</title>
+<meta charset="ISO-8859-1">
+
+<link href="stylesheets/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script src="controllers/controller.js"></script>
+</head>
+<body ng-controller="appctrl" ng-hide="logout!=-1" ng-show="logout==-1">
+<div id="back1" ></div>
+<div id="back2" >{{proff}}</div>
+
+<div id="dd"><div id="divalert" class="alert alert-danger" role="alert"><p ng-model="alertdata">{{alertdata}}</p><br><button type="button" class="btn btn-danger" ng-click="clo()">close</button></div></div>
+<div class="form-horizontal" id="loginform" ng-hide="temp==1">
+User Name:<input class="form-control" ng-model="uname" type="text" id="tex" />
+Password: <input class="form-control" ng-model="pass" type="password" /><br>
+<input type="submit" class="btn btn-primary" id="sub" ng-click="validate()" value="register"></input>
+<input type="submit" class="btn btn-primary" id="sub" ng-click="login()" value="login"></input>
+</div>
+
+<div id="menu" ng-show="temp==1" ng-hide="temp!=1">
+<input type="submit" class="btn btn-info" value="edit profile" ng-click="edit_profile()" /><br><br>
+<input type="submit" value="submit profile" class="btn btn-info" ng-click="sub_profile()"/><br><br>
+<input type="submit" value="cancel" class="btn btn-info" ng-click="can()" /><br><br>
+<input type="submit" value="post a job" class="btn btn-info" ng-click="temp3=1" /><br><br>
+<input type="submit" value="applicants for your jobs" class="btn btn-info" ng-click="jobsuposted()"/><br><br>
+<input type="submit" value="your job applications" class="btn btn-info" ng-click="yja()"/><br><br>
+<input type="submit" value="logout" class="btn btn-info" ng-click="logout=1" id="lou"/>
+<input class="form-control" type="text" placeholder="search for jobs" ng-model="searjob" /><br><input type="submit" value="search" class="btn btn-info" ng-click="sear()"/><br>
+<ul class="list-group" ng-hide="temp6==-1" ng-show="temp6!=-1">
+<li class="list-group-item" ng-repeat="cust in retdata|filter:searjob|orderBy:searjob" ><button type="button" class="list-group-item" ng-click="selejob(cust.jcode)">{{cust.jname}}</button></li>
+</ul><br><br>
+
+</div>
+
+
+<div id="tb" ng-show="temp1==1" ng-hide="temp1!=1||temp2==-1">
+<textarea rows="33" cols="30" placeholder="ENTER YOUR PROFILE DETAILS LIKE RESUME etc. HERE " id="ta" ng-model="proff" ></textarea>
+</div>
+
+<div id="pj" ng-hide="temp3!=1" ng-show="temp3==1">
+<br>
+<input class="form-control" type="text" id="pj1" placeholder="JOB CODE" ng-model="jobcode"/><br>
+<input class="form-control" type="text" id="pj2" placeholder="JOB NAME" ng-model="jobname"/><br>
+<textarea rows="28" cols="30" placeholder="JOB DESCRIPTION HERE" id="pj3" ng-model="jobdesc"></textarea><br>
+<input type="submit" value="submit job" class="btn btn-info" ng-click="publishjob()"/>
+</div>
+
+
+
+<div id="showjob" ng-hide="temp10!=1" ng-show="temp10==1">
+<div id="sj1" ng-model="sj11"><p>JOBCODE:&nbsp{{sj11}}</p></div><br>
+<div id="sj2" ng-model="sj22"><p>JOBNAME:&nbsp{{sj22}}</p></div><br>
+<div id="sj3" ng-model="sj33"><p>JOB DESCRIPTION:&nbsp{{sj33}}</p></div><br>
+<div id="sj4" ng-model="sj44"></div>
+<input type="submit" value="APPLY" ng-click="apply()" class="btn btn-info" />
+</div>
+
+
+<div id="tabl" ng-show="temp11==1" ng-hide="temp11!=1">
+<table class="table table-striped">
+<thead>
+<tr>
+ <th>You</th>
+ <th>Applicant</th>
+ <th>Job Code</th>
+ <th>Job Name</th>
+ <th>Job Description</th>
+ </tr>
+ </thead>
+ <tbody ng-repeat="applic in tabldata">
+ <tr>
+ <td>{{applic.poster}}</td>
+ <td><a href='#' ng-click="clikk(applic.applicant,applic.jcode,applic.jname)">{{applic.applicant}}</a></td>
+ <td>{{applic.jcode}}</td>
+ <td>{{applic.jname}}</td>
+ <td>{{applic.jdesc}}</td>
+ </tr>
+ </tbody>    
+</table>
+
+</div>
+
+
+<div id="vp" ng-hide="temp12!=1" ng-show="temp12==1" >
+<div id="vp1" ng-model="vp11">APPLICANT NAME:&nbsp{{vp11}}</div><br>
+<div id="vp22" ng-model="vp22">APPLICANT PROFILE:<br><br>{{vp22}}</div>
+<div id="sed">
+<input class="form-control" ng-model="messs" placeholder="ENTER A MESSAGE FOR THE APPLICANT" id="msg" /><br>
+<input type="submit" value="submit" class="btn btn-info" id="sms" ng-click="leavemsg(vp33,vp11,v55)"/></div>
+</div>
+
+
+
+
+
+<div id="tabl2" ng-hide="temp20!=1" ng-show="temp20==1">
+<table class="table table-striped">
+<thead>
+<tr>
+ <th>You</th>
+ 
+ <th>Job Code</th>
+ <th>Job Name</th>
+ <th>Application status</th>
+ </tr>
+ </thead>
+ <tbody ng-repeat="udata in userjobapps">
+ <tr>
+ <td>{{udata.applicant}}</td>
+ <td>{{udata.jcode}}</td>
+
+ <td><a href='#' ng-click="selejob(udata.jcode)">{{udata.jname}}</a></td>
+ <td>{{udata.status}}</td>
+ </tr>
+ </tbody>    
+</table>
+
+</div>
+
+
+
+
+
+</body>
+</html>
