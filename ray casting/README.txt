@@ -6,7 +6,7 @@ I) Citations:
 II) How to execute:
 
 	1) To see the output of the first part of the assignment i.e. rendering white triangles open the file whitetriangles.html in the folder project1.
-	2) To see the output of the second part of the assignment i.e. rendering coloured triangles using Blinn Phong illumination, open the file blinnphong.html in 	   the folder project1.
+	2) To see the output of the second part of the assignment i.e. rendering coloured triangles using Blinn Phong illumination, open the file blinnphong.html in the folder project1.
 	3) To change the image to be rendered, change the file name in lines 612 and 613 in blinnphong1.js and line 317 in whitetriangle.js.
 
 III) Structure of the submission:
