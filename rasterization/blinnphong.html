@@ -1,0 +1,581 @@
+<!-- The following code has been taken from https://github.com/gpjt/webgl-lessons/blob/master/lesson04/index.html and was modified according to the project specifications-->
+<html>
+
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+<script type="text/javascript" src="js/glMatrix-0.9.5.min.js"></script>
+<script type="text/javascript" src="js/webgl-utils.js"></script>
+
+<script id="shader-fs" type="x-shader/x-fragment">
+    precision mediump float;
+
+    varying vec4 vColor;
+
+    void main(void) {
+        gl_FragColor = vColor;
+
+    }
+</script>
+
+<script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 aVertexPosition;
+    attribute vec4 aVertexColor;
+
+
+    attribute vec3 aVertexNormal;
+
+    attribute vec3 Kaval;
+
+    vec3 light= vec3(1,5,5);
+
+
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+    varying vec4 vColor;
+
+    vec3 eye= vec3(0,0,2);
+
+    vec3 R;
+    vec3 S;
+    vec3 V;
+    float S1;
+    varying vec3 color;
+
+    void main(void) {
+        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+        
+
+
+       R=normalize(aVertexNormal)*(dot(light,normalize(aVertexNormal)))-light;
+       V=eye-gl_Position.xyz;
+       S1=dot(R,V);
+     //  S=(pow(S1,2))*vec3(0.3,0.6,0.2);
+
+       // vColor = aVertexColor;
+       /*if(Kaval[1]>1.1)
+       {
+         vColor = vec4(1.0,0.0,0.0,1.0);
+       }
+       else{
+        vColor = vec4(1.0,1.0,1.0,1.0);
+    }*/
+
+
+
+           // N = normalize(aVertexNormal);
+          //  N1 = normalize(Kaval);
+           // color = normalize(Kaval) * dot(light,normalize(aVertexNormal));
+            vColor = vec4(0.3,0.3 ,0.3,0.3)+vec4(normalize(Kaval) * dot(light-gl_Position.xyz,normalize(aVertexNormal)), 1.0);//+vec4(S,1.0);
+       //vColor = vec4((Kaval*dot(aVertexNormal,(light-gl_Position.xyz)),1.0));
+    }
+</script>
+
+
+<script type="text/javascript">
+
+    var gl;
+
+
+    var url = window.location.href;
+    var id = url.split('=')[1];
+
+
+
+// The following code to read file has been taken from http://stackoverflow.com/questions/21456198/read-from-a-local-text-file-and-update-and-updating-the-content-in-an-html-tag
+
+    function readTextFile(file)
+    {
+    //console.log(file);
+    var rawFile = new XMLHttpRequest();
+
+    rawFile.open("GET", file, false);
+
+    rawFile.onreadystatechange = function ()
+    {
+        //alert("coming");
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                allText = rawFile.responseText;
+                
+                localStorage.setItem('alText',allText);
+
+            }
+        }
+    }
+
+    rawFile.send(null);
+
+        
+    }
+
+
+
+    function readmtl(file)
+    {
+    console.log(file);
+    var rawFile = new XMLHttpRequest();
+
+    rawFile.open("GET", file, false);
+
+    rawFile.onreadystatechange = function ()
+    {
+        //alert("coming");
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                mtltext = rawFile.responseText;
+                
+                localStorage.setItem('mtltext',mtltext);
+                //alert(localStorage.getItem('alText'));
+            }
+        }
+    }
+    //console.log(localStorage.getItem('mtltext'));
+    rawFile.send(null);
+
+}
+
+
+
+
+
+
+
+    function initGL(canvas) {
+        try {
+          readTextFile(id);
+          if(id=="head/head.obj")
+           readmtl("head/head.mtl");
+       else
+        readmtl("vase/vase.mtl");
+            
+
+            gl = canvas.getContext("experimental-webgl");
+            gl.viewportWidth = canvas.width;
+            gl.viewportHeight = canvas.height;
+        } catch (e) {
+        }
+        if (!gl) {
+            alert("Could not initialise WebGL, sorry :-(");
+        }
+    }
+
+
+    function getShader(gl, id) {
+        var shaderScript = document.getElementById(id);
+        if (!shaderScript) {
+            return null;
+        }
+
+        var str = "";
+        var k = shaderScript.firstChild;
+        while (k) {
+            if (k.nodeType == 3) {
+                str += k.textContent;
+            }
+            k = k.nextSibling;
+        }
+
+        var shader;
+        if (shaderScript.type == "x-shader/x-fragment") {
+            shader = gl.createShader(gl.FRAGMENT_SHADER);
+        } else if (shaderScript.type == "x-shader/x-vertex") {
+            shader = gl.createShader(gl.VERTEX_SHADER);
+        } else {
+            return null;
+        }
+
+        gl.shaderSource(shader, str);
+        gl.compileShader(shader);
+
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            alert(gl.getShaderInfoLog(shader));
+            return null;
+        }
+
+        return shader;
+    }
+
+
+    var shaderProgram;
+
+    function initShaders() {
+        var fragmentShader = getShader(gl, "shader-fs");
+        var vertexShader = getShader(gl, "shader-vs");
+
+        shaderProgram = gl.createProgram();
+        gl.attachShader(shaderProgram, vertexShader);
+        gl.attachShader(shaderProgram, fragmentShader);
+        gl.linkProgram(shaderProgram);
+
+        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+            alert("Could not initialise shaders");
+        }
+
+        gl.useProgram(shaderProgram);
+
+//attribute vec3 aVertexNormal;
+
+
+        shaderProgram.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "aVertexNormal");
+        gl.enableVertexAttribArray(shaderProgram.vertexNormalAttribute);
+
+
+
+        shaderProgram.kaAttribute = gl.getAttribLocation(shaderProgram, "Kaval");
+        gl.enableVertexAttribArray(shaderProgram.kaAttribute);
+
+
+        shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+        gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+
+        shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
+        gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
+
+        shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+        shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+    }
+
+
+    var mvMatrix = mat4.create();
+    var mvMatrixStack = [];
+    var pMatrix = mat4.create();
+
+    function mvPushMatrix() {
+        var copy = mat4.create();
+        mat4.set(mvMatrix, copy);
+        mvMatrixStack.push(copy);
+    }
+
+    function mvPopMatrix() {
+        if (mvMatrixStack.length == 0) {
+            throw "Invalid popMatrix!";
+        }
+        mvMatrix = mvMatrixStack.pop();
+    }
+
+
+    function setMatrixUniforms() {
+        gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
+        gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
+    }
+
+
+    function degToRad(degrees) {
+        return degrees * Math.PI / 180;
+    }
+
+
+
+    var cubeVertexPositionBuffer;
+    var cubeVertexColorBuffer;
+    var cubeVertexIndexBuffer;
+
+    function initBuffers() {
+        
+
+
+
+
+
+        cubeVertexPositionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
+
+        filetext=localStorage.getItem('alText');
+
+        var vertices=[];
+        //console.log(filetext);
+        var res = filetext.split("\n");
+
+
+       var count=0;
+        for(var i=0;i<res.length;i++)
+        {
+
+        if(res[i][0]=="v"&&res[i][1]==" ")
+        {
+            //console.log(res[i][1]);
+            count++;
+
+            
+            var p=res[i].split(" ");
+
+            //console.log(p[2]);
+            
+
+                vertices.push(p[2]);
+                vertices.push(p[3]);
+                vertices.push(p[4]);
+        }
+    }
+
+
+
+
+        console.log(vertices);
+
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+        cubeVertexPositionBuffer.itemSize = 3;
+        cubeVertexPositionBuffer.numItems = count;
+
+   
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        cubeVertexNormalBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexNormalBuffer);
+
+
+    var ncount=0;
+    var vertnor=[];
+        for(var i=0;i<res.length;i++)
+        {
+
+        if(res[i][0]=="v"&&res[i][1]=="n")
+        {
+
+              
+            var p=res[i].split(" ");
+
+            //console.log(p[2]);
+            
+                var tempnor=[];
+             
+                tempnor.push(p[1]);
+                tempnor.push(p[2]);
+                tempnor.push(p[3]);
+
+                vertnor.push(tempnor);
+        }
+    }
+
+        //console.log(vertices);
+        var normVertexIndices=[];
+
+        var ncount1=0;
+
+
+        for(var k=0;k<res.length;k++)
+        {
+
+        if(res[k][0]=="f")
+        {
+            ncount1++;
+
+            
+            var q=res[k].split(" ");
+        
+            var q1=q[1].split("/")[2];
+            var q2=q[2].split("/")[2];
+            var q3=q[3].split("/")[2];
+            //console.log(q1+" "+q2+" "+q3);
+           
+
+           for(var j=0;j<vertnor[q1-1].length;j++)
+           {
+            normVertexIndices.push(vertnor[q1-1][j]);
+           }
+
+
+            for(var j=0;j<vertnor[q2-1].length;j++)
+           {
+            normVertexIndices.push(vertnor[q2-1][j]);
+           }
+
+
+            for(var j=0;j<vertnor[q2-1].length;j++)
+           {
+            normVertexIndices.push(vertnor[q3-1][j]);
+           }
+
+        }
+    }
+
+
+console.log(normVertexIndices);
+
+
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+        cubeVertexNormalBuffer.itemSize = 3;
+        cubeVertexNormalBuffer.numItems = (ncount1)*3;
+
+
+        cubeVertexColorBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexColorBuffer);
+
+        var colors=[];
+        for(var i=0;i<count;i++)
+        {
+            colors.push(1.0);
+        }
+        var unpackedColors = [];
+        for (var i in colors) {
+            var color = colors[i];
+            for (var j=0; j < 4; j++) {
+                unpackedColors = unpackedColors.concat(color);
+            }
+        }
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(unpackedColors), gl.STATIC_DRAW);
+        cubeVertexColorBuffer.itemSize = 4;
+        cubeVertexColorBuffer.numItems = 24;
+
+
+
+
+        cubeVertexIndexBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
+
+
+
+       var count1=0;
+        var cubeVertexIndices=[]
+        for(var k=0;k<res.length;k++)
+        {
+
+        if(res[k][0]=="f")
+        {
+            count1++;
+
+            
+            var q=res[k].split(" ");
+        
+            var q1=q[1].split("/")[0];
+            var q2=q[2].split("/")[0];
+            var q3=q[3].split("/")[0];
+
+           
+
+            cubeVertexIndices.push(q1-1);
+            cubeVertexIndices.push(q2-1);
+            cubeVertexIndices.push(q3-1);
+        }
+    }
+
+
+    console.log(cubeVertexIndices);
+
+ 
+
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW);
+        cubeVertexIndexBuffer.itemSize = 1;
+        cubeVertexIndexBuffer.numItems = count1*3;
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+kaBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, kaBuffer);
+
+
+
+mtlfil=localStorage.getItem('mtltext');
+var mtl1=mtlfil.split("\n");
+//console.log(mtl1[16].split('Ka')[1]);
+
+
+
+
+var kaarr=[];
+var karcount=0;
+
+for(i=0;i<mtl1.length;i++)
+{
+    if(mtl1[i].split(' ')[0]=='Kd')
+    {
+
+       karcount++;
+       kaarr.push(mtl1[i].split(' ')[1]);
+       kaarr.push(mtl1[i].split(' ')[2]);
+       kaarr.push(mtl1[i].split(' ')[3]);
+
+
+    }
+}
+
+console.log(kaarr);
+
+
+
+
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+kaBuffer.itemSize = 3;
+kaBuffer.numItems = karcount*2;
+
+}
+
+
+    var rCube = 0;
+
+    function drawScene() {
+        gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        mat4.perspective(90, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
+        mat4.identity(mvMatrix);
+        
+        
+        //mat4.translate(mvMatrix, [-0.5, -0.5, -3.0]); cubeVertexNormalBuffer
+        mat4.translate(mvMatrix, [0.0, 0.0, -8.0]);
+        mat4.scale(mvMatrix,[0.5,0.5,0.5]);
+        mvPushMatrix();
+       // mat4.rotate(mvMatrix, degToRad(rCube), [1, 1, 1]);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexNormalBuffer);
+        gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, cubeVertexNormalBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, kaBuffer);
+        gl.vertexAttribPointer(shaderProgram.kaAttribute, kaBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+
+
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
+        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, cubeVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexColorBuffer);
+        gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, cubeVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
+        setMatrixUniforms();
+        gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+        mvPopMatrix();
+
+
+    }
+
+
+    function webGLStart() {
+        var canvas = document.getElementById("canvas");
+        initGL(canvas);
+        initShaders()
+        initBuffers();
+
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.enable(gl.DEPTH_TEST);
+
+       drawScene();
+    }
+
+</script>
+
+
+</head>
+
+
+<body onload="webGLStart();">
+
+
+    <canvas id="canvas" style="border: none;" width="500" height="500"></canvas>
+
+ 
+</body>
+
+</html>
