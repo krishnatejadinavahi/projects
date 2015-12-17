@@ -1,0 +1,14 @@
+The QBert game provides a pink cube character for the player and has 3 enemies.
+
+The player loses the game if:
+	1. He is on the same cube as any of the enemies
+	2. He jumps off the board
+
+The player wins if:
+	1. He succesfully traverses all the cubes without losing. The color of the traversed cubes is changed to make it easy for the player.
+
+The spinning disc takes the player to the top of the board.
+
+Technologies used: HTML-5, JavaScript, WebGL.
+
+Link to ScreenCast: https://www.youtube.com/watch?v=fKo2eRsDHX8
