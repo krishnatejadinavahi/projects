@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app='App'>
+
+<head>
+  <style type='text/css'>
+   body, html { height: 100%; margin: 0;}
+   .google-map { height: 100%; width:80%; left:0%; float: right;}
+
+   a {
+    text-decoration: none;
+
+}
+input
+{
+   position: absolute;
+  left:40px;
+}
+#gb
+{
+  position: absolute;
+  top:3%;
+  left:20%;
+  color:red;
+}
+
+  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <script src='http://maps.googleapis.com/maps/api/js'></script>
+  <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js'></script>
+  <script src='ng-maps.js'></script>
+  <script src="main.js"></script>
+</head>
+
+<body ng-controller="Main">
+
+  <map ng-transclude class='google-map' center="map.center" options="map.options"> 
+    <marker position="marker.position" options="marker.options" events="marker.events"></marker>
+    <points coords="points.coords" options="points.options" events="points.events" decimals="points.decimals"></points>
+  </map><br>
+<div ng-init="friends = ['food',
+                         'movie_theater',
+                         'hospital',
+                         'atm',
+                         'bank',
+                         'mueseum','book_store','police','bus_station','library','park','school','lawyer','bar','lodging','church','cafe','doctor']">
+
+
+<input class="form-control" type="text" ng-model="entry" placeholder="Refine Search" /><br><br>
+
+<ul ng-repeat="li in friends | filter:entry" ng-model="li">
+<a href="#" ng-click="rests(li)"><i class="fa fa-hand-o-right"></i>&nbsp; {{li}} </a><br>
+
+<ul>
+</div>
+<div id="gb">
+<a class="btn btn-lg btn-success" href="#" ng-click="go_back()">
+  <i class="fa fa-cog fa-spin"></i> Change Location</a></div>
+</body>
+
+</html>

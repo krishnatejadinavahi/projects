@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<html lang="en" ng-app="myApp">
+
+
+<head>
+     
+    <style type="text/css">
+    html, body { height: 100%; margin: 0; padding: 0; }
+      #map { 
+       
+        height: 100%;
+        width:70%; 
+        left:30%;
+      }
+        
+    </style>
+      </head>
+<body ng-controller="appctrl">
+
+
+<script src="controller.js"></script>
+  <input type="submit" value="rests" ng-click="rests()" ng-model="place_array"></input>
+    <div id="map"></div>
+    <script type="text/javascript">
+
+
+
+/*var myApp = angular.module('myApp', []);
+myApp.controller('appctrl1', function($scope,$rootScope,$http) 
+{
+ // alert($rootScope.myval);
+ alert("hello");
+});*/
+
+
+
+function initMap() {
+
+var map;
+  map = new google.maps.Map(document.getElementById('map'), {
+center: {lat:17.3721834, lng:82.55362989999999},
+    zoom: 8
+  });
+
+  var marker = new google.maps.Marker({
+position: {lat:17.3721834, lng:82.55362989999999},
+    map: map,
+    title: 'Hello World!'
+  });
+
+
+
+var bounds = new google.maps.LatLngBounds();
+var markers = [
+        [51.503454,-0.119562],
+        [51.499633,-0.124755]
+    ];
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][0], markers[i][1]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: 'hello maps'
+        });
+
+}
+
+  
+}
+
+
+/*
+var myApp = angular.module('myApp', []);
+myApp.controller('appctrl', function($scope,$http) 
+{
+function tests()
+{
+  alert("tests");
+}
+
+});*/
+
+
+    </script>
+
+
+
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAv1cBrNcv6-E-RAbDmZCpVizKYcKvdwwc&callback=initMap"
+
+  type="text/javascript"></script>
+  </body>
+
+</html>
