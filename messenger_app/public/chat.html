@@ -1,0 +1,69 @@
+<textarea rows="4" cols="158" ng-model="my_message" ng-keydown="send($event)" placeholder="YOUR MESSAGE HERE, PRESS ENTER TO SEND"></textarea>
+<!--<button ng-click="send()">Send</button><br><br>-->
+<!--<textarea rows="30" cols="80" ng-model="box" ></textarea>-->
+
+
+<div ng-model="comments" id="myarea">
+	
+<div ng-repeat="comment in comments">
+	
+<div ng-if="comment.name=='You'" id="me">
+<strong>{{comment.name}}: {{comment.msg}}</strong>
+</div>	
+
+
+<div ng-if="comment.name!='You'" id="not_me">
+<strong>{{comment.name}}: {{comment.msg}}</strong>
+</div>	
+
+
+</div>
+
+</div>
+
+<a href="#message">Chat with someone else</a>
+
+<style type="text/css">
+
+#me
+{
+	color: blue;
+	position: relative;
+	left: 0%;
+}	
+
+#not_me
+{
+	color: red;
+	position: relative;
+	left: 0%;
+}	
+
+textarea
+{
+position: fixed;
+top:87%;
+border-style: solid;
+background-color: #F0FFFF;
+}
+
+
+#myarea
+{
+	overflow:auto;
+	position: absolute;
+	width:99%;
+	height:83%;
+	
+	
+	
+}
+a
+{
+position: fixed;
+top:97%;
+color:black;
+
+}
+
+</style>
