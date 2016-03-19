@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <title>Maps</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	  <script src='http://maps.googleapis.com/maps/api/js'></script>
+	  <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js'></script>
+	  <script src='ng-maps.js'></script>
+	    <script src="main.js"></script>
+    <style>
+        body { padding-top:50px; }
+        .container
+        {
+        	position: absolute;
+        	left:30%;
+        	top:50%;
+        }
+        #box1
+        {
+            position: absolute;
+            width:20%;
+            left:35%;
+            top:45%;
+        }
+        #button1 
+        {
+            position: absolute;
+            left:55.3%;
+            top:45%;
+        }
+    </style>
+   
+</head>
+<body ng-controller="Main">
+
+ <!--<script src="/home/krishna/myproject/controller.js"></script>-->
+<div id="icons">
+            <input type="text" placeholder="PIN CODE OR AREA NAME HERE" ng-model="pin" class="form-control" id="box1"></input>
+            <input type="submit" value="GO" ng-click="go_clicked()" class="btn btn-success" id="button1"></input>
+
+
+</div>
+
+</body>
+</html>

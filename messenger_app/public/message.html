@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+<div id="ips">
+<input type="text" class="form-control" ng-model="chat_mate" placeholder="Search friends"></input>
+<button class="btn btn-success" ng-click="start_chat()">Go</button>
+</div>
+
+
+<div ng-model="friends" id="one">
+
+<div ng-if="friends.length==0"><strong><i class="fa fa-home fa-fw"></i>No Friends</strong></div>
+
+<div ng-if="friends.length!=0"><strong><i class="fa fa-home fa-fw"></i>Friends:</strong></div>
+	
+<div ng-repeat="friend in friends | filter:chat_mate" ng-click="start_chat1(friend)">
+	
+&nbsp&nbsp&nbsp<i class="fa fa-shield fa-rotate-270"></i> <a href="#chat">{{friend.friendname}}</a>
+
+</div>
+
+</div>
+
+
+
+<div ng-model="pendings" id="two">
+	
+<div ng-if="pendings.length==0"><strong><i class="fa fa-home fa-fw"></i>No Pending Requests</strong></div>
+
+<div ng-if="pendings.length!=0"><strong><i class="fa fa-home fa-fw"></i>Pending Requests:</strong></div>
+
+<div ng-repeat="pending in pendings" ng-click="start_chat2(pending)">
+	
+&nbsp&nbsp&nbsp<i class="fa fa-shield fa-rotate-270"></i> <a href="#chat">{{pending}}</a>
+
+</div>
+
+</div>
+
+
+
+<div ng-model="unreads" id="three">
+	
+<div ng-if="unreads.length==0"><strong><i class="fa fa-home fa-fw"></i>No unread messages</strong></div>
+
+<div ng-if="unreads.length!=0"><strong><i class="fa fa-home fa-fw"></i>Unread Messages from:</strong></div>
+
+<div ng-repeat="unread in unreads" ng-click="start_chat3(unread)">
+	
+&nbsp&nbsp&nbsp<i class="fa fa-shield fa-rotate-270"></i> <a href="#chat">{{unread}}</a>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="vr">&nbsp;</div>
+
+<button class="btn btn-danger" ng-click="logout()" id="logout">Logout</button>
+
+<style type="text/css">
+
+.vr {
+    width:4px;
+    background-color:orange;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:50%;
+}
+
+#one
+{
+	position: absolute;
+	left:1%;
+	top:10%;
+}	
+#two
+{
+	position: fixed;
+	left:52%;
+	top:10%;
+}
+
+#three
+{
+	position: fixed;
+	left:72%;
+	top:10%;
+}
+
+
+
+#ips input
+{
+position: fixed;
+width: 500px;
+}
+
+#ips button
+{
+position: fixed;
+left:501px;
+}
+
+
+#logout
+{
+	position: absolute;
+	top:1%;
+	left:94%;
+}
+
+</style>
