@@ -1,0 +1,45 @@
+<!--List repositories page with options-->
+
+<link rel="stylesheet" type="text/css" href="css/list_repos.css">
+
+<div ng-init="myobj=send_obj()"><!--get the data-->
+
+<div style="position:relative; left:0px;float:right;">
+	<img src="{{myobj.avatar_url}}"/><br><br><!--display image of the user(avatara)-->
+	<input type="text" ng-model="other_user" required>
+	<button class="btn btn-danger" ng-click="change_user()">Change User</button>
+
+</div>
+
+<table>
+
+<tr>
+	
+<td><strong>Name</strong></td>
+<td><strong>{{myobj.name}}</strong></td>
+
+</tr>
+<!--Loop through the object and display key values in a tabular form-->
+<tr ng-repeat="(key,value) in myobj" ng-if="(key.indexOf('url')==-1&&key.indexOf('name')==-1&&key.indexOf('gravatar_id')==-1)">
+
+
+	<td>{{key}}</td>
+
+	<td ng-if="value!=null">{{value}}</td>
+	<td ng-if="value==null">Not specified</td><!--Display not specified on the screen if actual value is null-->
+
+
+
+</table>
+
+
+</div>
+<br>
+
+<h3>LIST OF REPOS:</h3>
+<div ng-init="set_repo_data()" ng-model="repo_data" style="width:50%; max-height:900px;"><!--get repo data-->
+<!--Loop and display as links to repos on GITHUB profile-->
+<div ng-repeat="data in repo_data"><a target="_blank" href="{{data.clone_url}}" style="text-decoration: none;">{{data.name}}</a><br></div>
+
+</div>
+

@@ -1,0 +1,20 @@
+#tables{
+	position: relative;
+	left: 400px;
+	top:200px;
+
+	
+}
+
+#submit_btn{
+	position: relative;
+	left: 132px;
+	top:10px;
+}
+
+/*All buttons in td*/
+td button{
+	position: relative;
+	left:35px;
+	
+}

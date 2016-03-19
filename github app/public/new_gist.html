@@ -1,0 +1,45 @@
+<!--Create new GIST-->
+
+<link rel="stylesheet" type="text/css" href="css/new_gist.css">
+
+<div id="tables">
+
+<!--Format in a tabular form-->
+<table>
+
+<tr>
+		<td><strong>File name</strong></td>
+		<td><input class="form-control input-sm" type="text" ng-model="gist_file_name" required></td>
+</tr><br>
+
+<tr>
+		<td><strong>File content</strong></td>
+		<td><input class="form-control input-sm" type="text" ng-model="gist_file_content" required></td>
+</tr><br>
+
+<tr>
+		<td></td>
+		<td><button class="btn btn-primary btn-sm" ng-click="add_file()" ng-disabled="((gist_file_name&&!gist_file_content)||(!gist_file_name&&gist_file_content)||(!gist_file_name&&!gist_file_content))">Add more files</button></td>
+</tr><br>
+
+
+<tr>
+		<td><strong>description</strong></td>
+		<td><input class="form-control input-sm" type="text" ng-model="gist_description"></td>
+</tr><br>
+
+
+
+<tr>
+		<td><strong>has_issues</strong></td>
+		<td><input class="form-control input-sm" type="checkbox" ng-init="gist_public=false" ng-model="gist_public"/></td>
+</tr><br>
+
+
+
+
+</table>
+<!--Submit should not be active until all the required fields have been filled-->
+<input class="btn btn-primary" type="submit" ng-disabled="((gist_file_name&&!gist_file_content)||(!gist_file_name&&gist_file_content)||(!gist_file_name&&!gist_file_content))" ng-click="confirm_new_gist()" id="submit_btn">
+
+</div>

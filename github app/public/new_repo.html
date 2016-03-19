@@ -1,0 +1,80 @@
+<!--Create new repo-->
+
+<link rel="stylesheet" type="text/css" href="css/new_repo.css">
+
+<div id="tables">
+<form>
+	<table><!--Format in a tabular form-->
+
+		<tr>
+		<td><strong>name</strong></td>
+		<td><input class="form-control input-sm" type="text" name="reponame" ng-model="repo.name" required></td>
+		</tr>
+
+		<tr>
+		<td><strong>description</strong></td>
+		<td><input class="form-control input-sm" type="text" ng-model="repo.description"></td>
+		</tr>
+
+		<tr>
+		<td><strong>homepage</strong></td>
+		<td><input class="form-control input-sm" type="text" ng-model="repo.homepage"></td>
+		</tr>
+
+		<tr>
+		<td><strong>private</strong></td>
+		<td><input class="form-control input-sm" type="checkbox" ng-init="repo.private=false" ng-model="repo.private"/></td>
+		</tr>
+
+		<tr>
+		<td><strong>has_issues</strong></td>
+		<td><input class="form-control input-sm" type="checkbox" ng-init="repo.has_issues=false" ng-model="repo.has_issues"/></td>
+		</tr>
+
+		<tr>
+		<td><strong>has_wiki</strong></td>
+		<td><input class="form-control input-sm" type="checkbox" ng-init="repo.has_wiki=false" ng-model="repo.has_wiki"/></td>
+		</tr>
+
+		<tr>
+		<td><strong>has_downloads</strong></td>
+		<td><input class="form-control input-sm" type="checkbox" ng-init="repo.has_downloads=false" ng-model="repo.has_downloads"/></td>
+		</tr>
+
+		<tr>
+		<td><strong>team_id</strong></td>
+		<td><input class="form-control input-sm" type="number" min="1" ng-model="repo.team_id"></td>
+		</tr>
+
+		<tr>
+		<td>
+		<strong>auto_init</strong>
+		</td>
+		<td>
+		<input class="form-control input-sm" type="checkbox" ng-init="repo.auto_init=false" ng-model="repo.auto_init"/>
+		</td>
+		</tr>
+
+		<tr>
+		<td>
+		<strong>gitignore_template</strong>
+		</td>
+		<td><input class="form-control input-sm" type="text" ng-model="repo.gitignore_template"></td>
+		</tr>
+
+		<tr>
+		<td>
+		<strong>license_template</strong></td>
+		<td><input class="form-control input-sm" type="text" ng-model="repo.license_template"></td>
+		</tr>
+</table>
+
+		<!--Submit should not be active until all the required fields have been filled-->
+		<input class="btn btn-primary" type="submit" ng-disabled="!(repo.name)" ng-click="confirm_new_repo()" id="submit_btn">
+	
+
+
+
+	
+</form>
+</div>

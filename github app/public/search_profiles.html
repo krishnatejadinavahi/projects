@@ -1,0 +1,18 @@
+<link rel="stylesheet" type="text/css" href="css/search_profiles.css">
+<br>
+<div ng-init="get_user_profile()"></div> <!--GET data-->
+<input ng-init="pro_refine=''" class="form-control input-sm" type="text" ng-model="pro_refine" placeholder="Refine the search" style="width:48%;"><!--Filter the data based on input-->
+<br>
+
+<table style="margin:15px;">
+<tr ng-repeat="(key,value) in person_info" ng-if="key.indexOf(pro_refine)!=-1">
+
+
+<td><strong>{{key}}</strong></td>
+<!--Loop through the object and display in tabular fashion-->
+
+		<td ng-if="key.indexOf('url')==-1" style="padding:10px;">{{value}}</td>
+		<td ng-if="key.indexOf('url')!=-1" style="padding:10px;"><a target="_blank" href="{{value}}">{{value}}</a></td>
+
+</tr>
+</table>

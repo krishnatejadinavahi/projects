@@ -1,0 +1,61 @@
+<!--HTML file to edit an existing PR-->
+
+
+<link rel="stylesheet" type="text/css" href="css/edit_pr.css">
+
+<input class="form-control input-sm" type="text" ng-model="pr_edit_reponame" placeholder="Repository Name" required><br><!--Repo Name-->
+
+<button class="btn btn-info btn-sm" ng-click="search_pull_req()">Search pull requests</button><br>
+
+<div ng-if="pull_req_info.length"><h3><strong><span style="color:#3366BB">Click on any of the PR(s) listed below</span>, and then click the <span style="color:red">"Search Information about this PR"</span> button to get the information about that PR</strong></h3><br>
+<h4><strong>List of PR(s)</strong></h4>
+</div>
+
+
+<!--Display a list of PRs associated with the repository and link them to their URL so that user has a reference of which PR it corresponds to-->
+<div ng-repeat="pr in pull_req_info"><a target="_blank" href="https://github.com/{{user_name_pr}}/{{pr_edit_reponame}}/pull/{{pr.number}}" ng-click="auto_gen_number(pr.number)" style="margin:10px;text-decoration:none;">{{pr.title}}</a></div>
+<br>
+
+<input class="form-control input-sm" type="text" ng-model="pr_number" readonly required><br><!--auto populated id based on user click-->
+<button class="btn btn-danger btn-sm" ng-click="display_single_pr()">Search Information about this PR</button><br>
+<form>
+
+<!--END OF SEARCH..................BEGINNING OF EDIT-->
+
+
+<hr>
+<h3><strong>Edit PR</strong></h3>
+<strong>Title</strong><input class="form-control input-sm" type="text" ng-model="pr_edit.title" required>
+<strong>Body</strong><input class="form-control input-sm" type="text" ng-model="pr_edit.body">
+<strong>State</strong><input class="form-control input-sm" type="text" ng-model="pr_edit.state">
+
+<input class="btn btn-primary" type="submit" ng-disabled="!(pr_number)" ng-click="confirm_edit_pr()">
+
+</form>
+<br><br>
+
+
+<!--Red cross mark which is used to hide the div which shows information related to a PR-->
+<a href="#edit_pr" ng-click="hide_div=1" ng-show="!(hide_div)"><i class="fa fa-times" style="font-size:40px;color:red; position:relative; left:1150px;"></i></a>
+<br>
+<br>
+
+<div id="pr_search" ng-show="!(hide_div)">
+
+<!--Allow user to filter data based on the key-->
+<input ng-init="refine_search_pr='';" class="form-control input-sm" type="text" ng-model="refine_search_pr" placeholder="Refine the Search">
+
+<table style="margin:5px;">
+	<tr ng-repeat="(key,value) in single_req_data" ng-if="key.indexOf(refine_search_pr)!=-1">
+
+		<td><strong>{{key}}</strong></td>
+		
+		<td ng-if="key.indexOf('url')==-1" style="padding:10px;">{{value}}</td> 
+		<!--if key has url word, display a link-->
+		<td ng-if="key.indexOf('url')!=-1" style="padding:10px;"><a target="_blank" href="{{value}}">{{value}}</a></td>
+
+	</tr>
+</table>
+
+
+</div>

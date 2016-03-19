@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="css/search_repo.css">
+
+
+<input class="form-control input-sm" type="text" name="reponame" ng-model="search_old_repo.name" placeholder="Repo Name" required style="width:30%;display:inline"><!--Enter the repo name-->
+<input class="btn btn-primary" type="submit" ng-disabled="!(search_old_repo.name)" ng-click="confirm_search_repo()"><br><br>
+
+
+<!--Filter the data based on input-->
+<input ng-init="refine_display='';ref_disable=1;" class="form-control input-sm" ng-model="refine_display" ng-disabled="ref_disable" placeholder="Refine search" style="width:30%;">
+
+<table style="margin:15px;">
+
+<!--Loop through the object and display in tabular fashion-->
+<tr ng-repeat="(res,result) in search_results" ng-if="res.indexOf(refine_display)!=-1">
+<td><strong>{{res}}</strong></td>
+
+
+
+		<td ng-if="res.indexOf('url')==-1" style="padding:10px;">{{result}}</td>
+		<td ng-if="res.indexOf('url')!=-1" style="padding:10px;"><a target="_blank" href="{{result}}">{{result}}</a></td>
+
+</tr>
+</table>
+

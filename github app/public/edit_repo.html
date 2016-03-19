@@ -1,0 +1,56 @@
+<!--Edit Repo page with options-->
+<link rel="stylesheet" type="text/css" href="css/edit_repo.css">
+
+<div id="tables">
+	<form>
+<!--Format in a tabular form-->
+		<table>
+
+				<tr>
+					<td><strong>name</strong></td>
+					<td><input class="form-control input-sm" type="text" name="reponame" ng-model="old_repo.name"required></td>
+				</tr>
+
+				<tr>
+					<td><strong>description</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="old_repo.description"></td>
+				</tr>
+
+				<tr>
+					<td><strong>homepage</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="old_repo.homepage"></td>
+				</tr>
+
+				<tr>
+					<td><strong>private</strong></td>
+					<td><input class="form-control input-sm" type="checkbox" ng-init="old_repo.private=false" ng-model="old_repo.private"/></td>
+				</tr>
+
+				<tr>
+					<td><strong>has_issues</strong></td>
+					<td><input class="form-control input-sm" type="checkbox" ng-init="old_repo.has_issues=false" ng-model="old_repo.has_issues"/></td>
+				</tr>
+
+				<tr>
+					<td><strong>has_wiki</strong></td>
+					<td><input class="form-control input-sm" type="checkbox" ng-init="old_repo.has_wiki=false" ng-model="old_repo.has_wiki"/></td>
+				</tr>
+
+				<tr>
+					<td><strong>has_downloads</strong></td>
+					<td><input class="form-control input-sm" type="checkbox" ng-init="old_repo.has_downloads=false" ng-model="old_repo.has_downloads"/></td>
+				</tr>
+
+				<tr>
+					<td><strong>default branch</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="old_repo.default_branch"></td>
+				</tr>
+
+	
+		</table>
+
+<!--Submit should not be active until all the required fields have been filled-->
+<input class="btn btn-primary" type="submit" ng-disabled="!(old_repo.name)" ng-click="confirm_edit_repo()" id="submit_btn">
+
+	</form>
+</div>

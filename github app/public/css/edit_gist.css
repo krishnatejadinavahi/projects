@@ -1,0 +1,14 @@
+#tables{
+	position: relative;
+	left: 150px;
+	top:100px;
+
+	
+}
+
+#submit_btn{
+	position: relative;
+	left: 250px;
+	top:200px;
+	width:60%;
+}

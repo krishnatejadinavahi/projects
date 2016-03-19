@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" href="css/search_gist.css">
+
+
+<h3>Click on any list below to get the information related to that GIST</h3>
+<!--Display list of GISTS for the user to select-->
+<div ng-repeat="gist in get_gist_id()"><a href="#search_gist" ng-click="get_gist_details(gist.id)" style="margin:10px;">{{gist.id}}</a></div>
+
+<input ng-init="refine_gist_ids='';" placeholder="Refine Search" class="form-control input-sm" ng-model="refine_gist_ids" style="width:40%;"><!--Filter the information related to GIST-->
+
+<table style="margin:5px;">
+<!--Loop through the object and display in a tabular fashion-->
+	<tr ng-repeat="(key, value) in gist_information" ng-if="key.indexOf(refine_gist_ids)!=-1">
+
+		<td><strong>{{key}}</strong></td>
+
+		<td ng-if="key.indexOf('url')==-1" style="padding:10px;">{{value}}</td>
+		<td ng-if="key.indexOf('url')!=-1" style="padding:10px;"><a target="_blank" href="{{value}}">{{value}}</a></td>
+	</tr>
+</table>

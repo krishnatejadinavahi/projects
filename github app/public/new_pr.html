@@ -1,0 +1,43 @@
+<!--Create new PR-->
+
+<link rel="stylesheet" type="text/css" href="css/new_pr.css">
+
+<div id="tables">
+
+	<form>
+		<table><!--Format in a tabular form-->
+
+		<tr>
+			<td><strong>Repo name</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="pr_reponame" required></td>
+		</tr>
+
+
+		<tr>
+			<td><strong>PR title</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="pr.title" required></td>
+		</tr>
+
+		<tr>
+			<td><strong>PR head</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="pr.head" required></td>
+		</tr>
+
+		<tr>
+			<td><strong>PR base</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="pr.base" required></td>
+		</tr>
+
+		<tr>
+			<td><strong>PR body</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="pr.body"></td>
+		</tr>
+
+			
+
+		</table>
+		<!--Submit should not be active until all the required fields have been filled-->
+		<input class="btn btn-primary" type="submit" ng-disabled="!(pr.title&&pr.head&&pr.base)" ng-click="confirm_new_pr()" id="submit_btn">
+
+	</form>
+</div>

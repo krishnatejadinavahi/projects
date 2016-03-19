@@ -1,0 +1,6 @@
+hr{
+	background-color: black; height: 1px; border: 0;
+}
+
+/*Color of even row in table is different*/
+tr:nth-child(even) {background-color: #f2f2f2}

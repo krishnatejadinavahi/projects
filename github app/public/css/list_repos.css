@@ -1,0 +1,26 @@
+table {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+/*Color of even row in table is different*/
+tr:nth-child(even){background-color: #f1f1f1}
+
+img{
+	border:solid 10px;
+}
+
+
+
+#alert_box{
+	position: absolute;
+	top:40%;
+	left:35%;
+	z-index: 100;
+}
+

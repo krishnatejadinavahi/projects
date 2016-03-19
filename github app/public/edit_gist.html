@@ -1,0 +1,71 @@
+<!--Page where the GISTS are displayed, user cans elect one of them and edit them-->
+
+<link rel="stylesheet" type="text/css" href="css/edit_gist.css">
+
+<h2><strong>Gists</strong></h2>
+<h4 style="margin:5px;">Click one of the links below which correspond to a GIST so that the ID gets populated automatically</h4>
+
+<!--use ng-repeat to traverse through the gist object and display the id -->
+<div ng-repeat="id in get_gist_id()"><a target="_blank" href="{{id.html_url}}" ng-click="auto_pop_id(id.id)" style="margin:15px;">{{id.id}}</a></div>
+
+<br>
+
+<h5 style="color:red">File content is a must if the filename is specified. The submit button will not get activated if there is only filename or only file content. Use the green buttons to perform operations and once when you are done, click submit</h5>
+<div id="tables">
+
+	<table>
+	<tr>
+		<td><strong>ID</strong></td>
+		<td><input class="form-control input-sm" type="text" ng-model="gist_id_for_patch" readonly required></td><!--make readonly so that user wont corrupt the id-->
+	<tr>
+
+	<tr>
+		<td><strong>Description</strong></td>
+		<td><input class="form-control input-sm" type="text" ng-model="gist_description"></td>
+	<tr>
+
+
+	<!--Add file, update if exists-->
+		<div>
+		<tr>
+			<td><strong>File Name</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="gist_content_update_name"></td>
+			<td><strong>File Content</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="gist_content_update_content"></td>
+			<td><button class="btn btn-success" ng-click="gist_c_update()" ng-disabled="!(gist_content_update_name&&gist_content_update_content)">Add/Update</button></td>
+
+		</tr>	
+		</div>
+	
+
+<!--Update file, change name or contents-->
+	
+		<div>
+		<tr>
+			<td><strong>Old File Name</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="gist_nc_update_old_name"></td>
+			<td><strong>New File Name</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="gist_nc_update_new_name"></td>
+			<td><strong>File Content</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="gist_nc_update_content"></td>
+			<td><button class="btn btn-success" ng-click="gist_nc_update()" ng-disabled="!(gist_nc_update_old_name&&gist_nc_update_new_name&&gist_nc_update_content)">Update name and contents</button></td>
+		</tr>
+		</div>
+
+<!--Delete file-->
+		<div>
+		<tr>
+			<td><strong>File Name</strong></td>
+			<td><input class="form-control input-sm" type="text" ng-model="gist_delete_name"></td>
+			<td><button class="btn btn-success" ng-disabled="!(gist_delete_name)" ng-click="gist_del()">Delete</button></td>
+		</tr>
+		</div>
+	
+
+
+	</table>
+
+</div>
+
+<!--Submit the object to the controller which makes a HTTP request-->
+<input class="btn btn-primary" type="submit" ng-disabled="!(!(gist_content_update_name||gist_content_update_content)&&!(gist_nc_update_old_name||gist_nc_update_new_name||gist_nc_update_content)&&(!gist_delete_name))" ng-click="confirm_edit_gist()" id="submit_btn">

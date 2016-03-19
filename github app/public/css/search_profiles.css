@@ -1,0 +1,2 @@
+/*Color of even row in table is different*/
+tr:nth-child(even){background-color: #f2f2f2}

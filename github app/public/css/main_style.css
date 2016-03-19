@@ -1,0 +1,9 @@
+body{
+	background-color:#F0FFFF;
+}
+
+/*All the text boxes marked with required will have a red border*/
+:required {
+ 
+ 	border-color:red;
+}

@@ -1,0 +1,52 @@
+<!--Edit Profile page with options-->
+<link rel="stylesheet" type="text/css" href="css/edit_profiles.css">
+
+<!--Format in a tabular form-->
+<div id="tables">
+	<form>
+		<table>	
+				<tr>	
+					<td><strong>name</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="my_profile.name"></td>
+				</tr>
+
+
+				<tr>	
+					<td><strong>email</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="my_profile.email"></td>
+				</tr>
+
+
+				<tr>	
+					<td><strong>blog</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="my_profile.blog"></td>
+				</tr>
+
+				<tr>	
+					<td><strong>company</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="my_profile.company"></td>
+				</tr>
+
+				<tr>	
+					<td><strong>location</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="my_profile.location"></td>
+				</tr>
+
+				<tr>	
+					<td><strong>hireable</strong></td>
+					<td><input class="form-control input-sm" type="checkbox" ng-init="my_profile.hireable=false" ng-model="my_profile.hireable"/></td>
+				</tr>
+
+				<tr>	
+					<td><strong>bio</strong></td>
+					<td><input class="form-control input-sm" type="text" ng-model="my_profile.bio"></td>
+				</tr>
+
+
+		</table>
+
+<!--Submit should not be active until all the required fields have been filled-->
+<input class="btn btn-primary" class="btn btn-primary" type="submit" ng-click="confirm_edit_profile()" id="submit_btn" ng-disabled="!(my_profile.name||my_profile.email||my_profile.blog||my_profile.company||my_profile.location||my_profile.bio||my_profile.hireable)">
+
+	</form>
+</div>
