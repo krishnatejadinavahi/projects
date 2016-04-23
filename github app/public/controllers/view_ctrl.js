@@ -18,7 +18,7 @@ $scope.send_obj=function(){
 
    var user_json=git_service.userdata;
 
-   console.log(user_json);
+   //console.log(user_json);
 
    return user_json;
 
@@ -29,11 +29,11 @@ $scope.set_repo_data=function(){
 
   var user_json=git_service.userdata;
 //alert(git_service.token);
-  console.log(user_json["repos_url"]+"?per_page=100");
+  //console.log(user_json["repos_url"]+"?per_page=100");
   $http.get(user_json["repos_url"]+"?access_token="+git_service.token+"&per_page=100").success(function(data){
 
     git_service.push_repo_data(data);
-   // console.log(git_service.pop_repo_data());  
+    console.log(git_service.pop_repo_data());  //array of objects
     $scope.repo_data=git_service.pop_repo_data();
 
 
@@ -58,9 +58,9 @@ $scope.change_user=function(){
 
                 $scope.set_repo_data();
 
-                if ($scope.$root!=null && $scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
+             /*   if ($scope.$root!=null && $scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
                     $scope.$apply();
-                }
+                }*/
                 
                 $scope.other_user='';
 

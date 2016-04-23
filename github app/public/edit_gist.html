@@ -69,3 +69,5 @@
 
 <!--Submit the object to the controller which makes a HTTP request-->
 <input class="btn btn-primary" type="submit" ng-disabled="!(!(gist_content_update_name||gist_content_update_content)&&!(gist_nc_update_old_name||gist_nc_update_new_name||gist_nc_update_content)&&(!gist_delete_name))" ng-click="confirm_edit_gist()" id="submit_btn">
+
+<!--ng enabled=!a&&!b&&!c&&!d&&!e&&!f. So if all are empty, enable-->

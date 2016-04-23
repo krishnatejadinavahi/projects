@@ -19,9 +19,11 @@ app.use(express.static('public'));
 
 app.get('/', function(req, res) {
 
+
     res.sendFile(path.join(__dirname + '/public/index.html'));
 });
-
+//__dirname stores the directory in which server,js is present
+//path.join concatenates dirname and the given value
 
 app.post('/proxy',function(req,res){
 
@@ -30,8 +32,8 @@ request({
     url: 'https://github.com/login/oauth/access_token?client_id='+req["body"]["client_id"]+'&client_secret='+req["body"]["client_secret"]+'&code='+req["body"]["code"], //URL to hit
     method: 'POST',
     headers: {
-        'Content-Type': 'MyContentType',
-        'Custom-Header': 'Custom Value'
+     //   'Content-Type': 'MyContentType', //type of the data being sent. in this case it is applications/json
+      //  'Custom-Header': 'Custom Value'
     },
     
 }, function(error, response, body){
@@ -52,15 +54,15 @@ app.post('/proxy1',function(req,res){
 
 
 
-        postData = req.body.oldrepo;
+        var postData = req.body.oldrepo;
 
 
     request({
         url: 'https://api.github.com/repos/'+req.body.login+'/'+req.body.oldrepo.name+'?access_token='+req.body.token,
         method: 'patch',
         headers: {
-            'Content-Type': 'MyContentType',
-            'Custom-Header': 'Custom Value',
+          //  'Content-Type': 'MyContentType',
+         //   'Custom-Header': 'Custom Value',
             'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1521.3 Safari/537.36'
 
         },

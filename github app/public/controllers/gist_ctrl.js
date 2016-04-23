@@ -73,7 +73,7 @@ $scope.edit_gist=function(){
      gist_service.gist_ids=data;
      
 
-    // console.log(gist_service.gist_ids);    
+     console.log(gist_service.gist_ids);    
 
     }).error(function(err,status){
 

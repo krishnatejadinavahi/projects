@@ -26,3 +26,21 @@ app.config(['$routeProvider', function($routeProvider) {
             .otherwise({redirectTo: '/'});
 }]);
 
+/*can use ui.router*/
+
+/*
+app.config(['$stateProvider','$urlRouteProvider'],function($stateProvider,$urlRouteProvider){
+      $stateProvider.state("options",{
+            url:"/options",
+            templateUrl:"/options.html",
+            controller:"view_ctrl"
+      })
+      .state("options.choices",{
+            url:"/choices",
+            templateUrl:"/choices.html",
+            controller:"view_ctrl"
+      })
+      $urlRouteProvider.otherwise("/");
+})
+
+*/

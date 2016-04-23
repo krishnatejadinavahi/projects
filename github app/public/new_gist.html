@@ -20,6 +20,7 @@
 <tr>
 		<td></td>
 		<td><button class="btn btn-primary btn-sm" ng-click="add_file()" ng-disabled="((gist_file_name&&!gist_file_content)||(!gist_file_name&&gist_file_content)||(!gist_file_name&&!gist_file_content))">Add more files</button></td>
+		<!--same as !(gist_file_name&&gist_file_content)-->
 </tr><br>
 
 
@@ -41,5 +42,5 @@
 </table>
 <!--Submit should not be active until all the required fields have been filled-->
 <input class="btn btn-primary" type="submit" ng-disabled="((gist_file_name&&!gist_file_content)||(!gist_file_name&&gist_file_content)||(!gist_file_name&&!gist_file_content))" ng-click="confirm_new_gist()" id="submit_btn">
-
+<!--same as !(gist_file_name&&gist_file_content)-->
 </div>

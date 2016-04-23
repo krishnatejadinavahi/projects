@@ -2,8 +2,8 @@
 
 angular.module("service1",[]).service('git_service',function(){
 	
-this.userdata={};//object that has user details
-this.code_set=0;
+this.userdata={};//object for first question //can be seperate factory
+this.code_set=0; //can be value recipe
 this.repoData=[];//array with repo details
 this.token='';//access token
 this.login='';//username

@@ -69,7 +69,7 @@ $scope.user_name_pr=git_service.login;
 //Automatically populate id in the text box
 $scope.auto_gen_number=function(num){
   $scope.hide_div=1;
-  $scope.pr_number='';
+  //$scope.pr_number='';
   $scope.pr_number=num;
 }
 
